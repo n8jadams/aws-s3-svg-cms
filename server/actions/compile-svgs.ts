@@ -5,7 +5,7 @@ import fetch from 'node-fetch'
 import { extendedGlobal } from '../extended-global'
 import { fetchSourceSvgs } from './fetch-source-svgs'
 import { COMPILED_SVG_FILENAME } from '../consts/compiled-svg-filename'
-import { S3_BUCKET_NAME, SPRITE_SHEET_FILENAME_WITHOUT_EXT } from '../consts/env'
+import { S3_BUCKET_NAME, SPRITE_SHEET_FILENAME_WITHOUT_EXT, S3_BUCKET_BASE_URL } from '../consts/env'
 
 const config = {
   log: null,
@@ -73,7 +73,7 @@ export async function compileSvgs(): Promise<void> {
         let svgAlreadyInS3 = true
         try {
           await fetch(
-            `https://svg-cms.s3-us-west-2.amazonaws.com/${COMPILED_SVG_FILENAME}`
+            `${S3_BUCKET_BASE_URL}${COMPILED_SVG_FILENAME}`
           )
         } catch (_) {
           svgAlreadyInS3 = false

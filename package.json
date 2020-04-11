@@ -10,11 +10,11 @@
     "prebuild": "rimraf dist",
     "build": "npm run build:client && npm run build:server",
     "build:client": "webpack --production",
-    "build:server": "npm run copy-env && tsc --project server/tsconfig.json",
+    "build:server": "npm run copy-env && ttsc --project server/tsconfig.json",
     "copy-env": "cpy '../.env' ../dist/server/ --cwd=server/ --parents",
     "dev": "concurrently -p \"[{name}]\" -n \"server,client\" -c \"bgGreen.bold,bgCyan.bold\" \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "webpack --watch",
-    "dev:server": "npm run copy-env && tsc-watch --noClear -p server/tsconfig.json --outDir dist/server --onSuccess \"npm run start\" || exit 0",
+    "dev:server": "npm run copy-env && tsc-watch --noClear --compiler ttypescript/bin/tsc -p server/tsconfig.json --outDir dist/server --onSuccess \"npm run start\" || exit 0",
     "preinstall": "npx npm-force-resolutions",
     "start": "node dist/server/server.js"
   },
@@ -58,7 +58,9 @@
     "svg-sprite": "^1.5.0",
     "terser-webpack-plugin": "^2.3.5",
     "tsc-watch": "^4.2.3",
+    "ttypescript": "^1.5.10",
     "typescript": "^3.8.3",
+    "typescript-is": "^0.15.0",
     "url-loader": "^3.0.0",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11"

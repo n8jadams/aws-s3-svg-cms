@@ -4,6 +4,7 @@ import { extendedGlobal } from '../extended-global'
 import { deriveFileExtension } from '../utils/derive-file-extension'
 import { filterSvgTopLevelDimensions } from '../utils/filter-svg-top-level-dimensions'
 import { SOURCE_SVGS_FOLDER } from '../consts/source-svgs-folder'
+import { S3_BUCKET_BASE_URL } from '../consts/env'
 
 interface S3BucketType {
 	Key: string
@@ -24,7 +25,7 @@ export async function fetchSourceSvgs(includeBody:boolean = false): Promise<Svg[
 			dataContents.map(async (c: S3BucketType) => {
 				const id = c.Key.replace(SOURCE_SVGS_FOLDER, '').replace('.svg', '').toLowerCase()
 				const fetchResult = await fetch(
-					`https://svg-cms.s3-us-west-2.amazonaws.com/${c.Key}`
+					`${S3_BUCKET_BASE_URL}${c.Key}`
 				)
 				const svgWithPotentialDimensions = await fetchResult.text()
 				const svgWithoutDimensions = filterSvgTopLevelDimensions(svgWithPotentialDimensions)

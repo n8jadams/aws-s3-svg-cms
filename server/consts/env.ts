@@ -7,3 +7,4 @@ export const REQUIRED_ENV_VARS = [
 export const AWS_DEFAULT_REGION = process.env.AWS_DEFAULT_REGION
 export const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME
 export const SPRITE_SHEET_FILENAME_WITHOUT_EXT = process.env.SPRITE_SHEET_FILENAME_WITHOUT_EXT
+export const S3_BUCKET_BASE_URL = `https://${S3_BUCKET_NAME}.s3-${AWS_DEFAULT_REGION}.amazonaws.com/`

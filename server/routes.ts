@@ -1,6 +1,7 @@
 import * as fastify from 'fastify'
 import { FastifyReply } from 'fastify'
 import { ServerResponse } from 'http'
+import { is } from 'typescript-is'
 
 import { fetchSourceSvgs } from './actions/fetch-source-svgs'
 import { idRenameSvg } from './actions/id-rename-svg'
@@ -40,8 +41,22 @@ export async function routes(
     ): Promise<void> => {
       const payload = request.body
 
+      // Validate payload format
+      if(!is<SavingPayload>(payload)) {
+        throw new Error('Invalid request body format')
+      }
+
+      // Validate id uniqueness
+      let passedIds = []
+      payload.forEach(change => {
+        if(passedIds.indexOf(change.id) !== -1) {
+          throw new Error('Ids must be unique')
+        }
+        passedIds.push(change.id)
+      })
+
       // Validate the given ids
-      if (!payload.every(o => validateId(o.id))) {
+      if (!payload.every(change => validateId(change.id))) {
         throw new Error('Invalid id passed')
       }
 

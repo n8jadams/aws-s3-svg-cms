@@ -57,6 +57,10 @@ function SvgCmsAppReducer(prevState: SvgListState, payload: ReducerPayload) {
 			}, {})
 			return returnValue
 		case ACTIONS.ADD:
+			// Ensure the id doesn't collide with one already on the page
+			while(Object.keys(prevState).some(key => payload.data.newSvg.id === prevState[key].id)) {
+				payload.data.newSvg.id += '-copy'
+			}
 			return { ...prevState, [uuidv4()]: payload.data.newSvg }
 		case ACTIONS.DELETE:
 			const deletedSvg = prevState[payload.data.uuid]
@@ -88,7 +92,6 @@ function SvgCmsAppReducer(prevState: SvgListState, payload: ReducerPayload) {
 }
 
 export function SvgCmsApp(): React.ReactElement {
-	const [testLoading, setTestLoading] = useState(true)
 	const [loading, setLoading] = useState(false)
 	const [initialLoading, setInitialLoading] = useState(true)
 	const [svgs, dispatch] = useReducer(SvgCmsAppReducer, {})
