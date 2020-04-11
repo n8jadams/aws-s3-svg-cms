@@ -11,6 +11,9 @@
 		"incremental": true,
 		"jsx": "react",
 		"outDir": "dist",
-		"lib": [ "es5", "es6", "dom", "dom.iterable" ]
+		"lib": [ "es5", "es6", "dom", "dom.iterable" ],
+		"plugins": [
+			{ "transform": "typescript-is/lib/transform-inline/transformer" }
+		]
 	}
 }

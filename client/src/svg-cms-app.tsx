@@ -286,7 +286,7 @@ export function SvgCmsApp(): React.ReactElement {
 														className="copy-to-clipboard-button"
 														onClick={() => {
 															copyToClipboard(svg.id)
-															alert('Copied svg id to clipboard!')
+															alert(`Copied svg id "${svg.id}" to clipboard!`)
 														}}
 													>📋</button>
 												</>

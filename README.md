@@ -26,12 +26,37 @@ $ npm start
 ## SVG Sprite Sheet
 After making changes, the sprite sheet will be accessible at the following url:
 ```
-https://{S3_BUCKET_NAME}.s3-{AWS_DEFAULT_REGION}.amazonaws.com/compiled-svg-sheet/{SPRITE_SHEET_FILENAME_WITHOUT_EXT}.svg
+SVG_SPRITE_SHEET_URL = https://{S3_BUCKET_NAME}.s3-{AWS_DEFAULT_REGION}.amazonaws.com/compiled-svg-sheet/{SPRITE_SHEET_FILENAME_WITHOUT_EXT}.svg
 ```
 
-### Known bug
-Sometypes ttypescript won't run because of a permissions thing. To fix it, `cd` into the project folder and grant the following permissions in the project.
+And you can inject it into your page with javascript:
+
+```javascript
+window.addEventListener('load', () => {
+	fetch('SVG_SPRITE_SHEET_URL')
+		.then((res) => {
+			if (!res.ok) {
+				throw new Error(response.statusText)
+			}
+			return res.text()
+		})
+		.then((svg) => {
+			const div = document.createElement('div')
+			div.innerHTML = svg
+			document.body.insertBefore(div, document.body.childNodes[0])
+		})
+		.catch((e) => {
+			throw new Error(e)
+		})
+})
 ```
-$ cd /path/to/aws-s3-svg-cms
-$ chmod -R u+x ./node_modules/ttypescript
+
+And then add individual svgs in your html!
+
+```html
+<div class="some-container-class">
+	<svg>
+		<use xlink:href="#some-svg-id"></use>
+	</svg>
+</div>
 ```

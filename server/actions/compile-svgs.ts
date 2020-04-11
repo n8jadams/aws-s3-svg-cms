@@ -1,6 +1,6 @@
 import SVGSpriter from 'svg-sprite'
 import S3 from 'aws-sdk/clients/s3'
-import fetch from 'node-fetch'
+import fetch from 'isomorphic-unfetch'
 
 import { extendedGlobal } from '../extended-global'
 import { fetchSourceSvgs } from './fetch-source-svgs'

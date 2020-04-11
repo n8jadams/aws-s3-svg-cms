@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-unfetch'
+
 export async function save(payload: SavingPayload): Promise<Response> {
 	return await fetch('/api/save', {
 		method: 'POST',

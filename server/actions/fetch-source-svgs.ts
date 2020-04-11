@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import fetch from 'isomorphic-unfetch'
 
 import { extendedGlobal } from '../extended-global'
 import { deriveFileExtension } from '../utils/derive-file-extension'

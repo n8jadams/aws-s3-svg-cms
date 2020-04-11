@@ -21,19 +21,6 @@ module.exports = (_, argv) => {
 			module: {
 				rules: [
 					{
-						// Inline base64 URLs for <=8k images, direct URLs for the rest
-						test: /\.(png|jpg|gif)$/,
-						use: [
-							{
-								loader: 'url-loader',
-								options: {
-									limit: 8192,
-									name: './images/[name]-[hash:6].[ext]?[hash]'
-								}
-							}
-						]
-					},
-					{
 						test: /\.css$/,
 						use: [
 							{
