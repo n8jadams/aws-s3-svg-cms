@@ -1,0 +1,1 @@
+export const SOURCE_SVGS_FOLDER = 'source-svgs/'

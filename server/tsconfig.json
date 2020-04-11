@@ -1,0 +1,13 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../dist/server",
+		"sourceMap": true,
+		"target": "es2017",
+		"types": ["node"],
+		"allowJs": true,
+		"module": "commonjs",
+		"experimentalDecorators": true
+	},
+	"exclude": ["../node_modules", "../client"]
+}

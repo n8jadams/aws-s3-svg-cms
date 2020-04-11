@@ -1,0 +1,232 @@
+@charset "UTF-8";
+
+* {
+  position: relative;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  color: #666;
+  background: #fafafa;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 3em;
+  background-color: #fff;
+}
+
+header p {
+  margin: 2em 0 0 0;
+}
+
+main {
+  border-top: 1px solid #eee;
+  padding: 2em 3em 0 3em;
+}
+
+main ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+main li {
+  display: block;
+  background-color: #fff;
+  margin: 0 2em 2em 0;
+  border: 1px solid #ccc;
+  padding: 1em 1em 3em 1em;
+  cursor: default;
+  height: 153px;
+  width: 146px;
+  box-shadow: 1px 2px 9px -6px #000000;
+}
+
+.icon-box,
+.icon-box-new {
+  margin: 0;
+  width: 144px;
+  height: 144px;
+  border: 1px solid #ccc;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.icon-box {
+  background: #ccc
+    url('data:image/gif;base64,R0lGODlhDAAMAIAAAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjEgNjQuMTQwOTQ5LCAyMDEwLzEyLzA3LTEwOjU3OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozQjk4OTI0MUY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozQjk4OTI0MkY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjNCOTg5MjNGRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNCOTg5MjQwRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAAAwADAAAAhaEH6mHmmzcgzJAUG/NVGrfOZ8YLlABADs=')
+    top left repeat;
+  border: 1px solid #ccc;
+}
+
+.icon-box img {
+  width: 145px;
+}
+
+.icon-box-new {
+  border: 1px solid white;
+}
+
+.icon-box-new::before {
+  content: '+';
+  color: #ccc;
+  font-size: 201px;
+  position: absolute;
+  top: -66px;
+  left: 13px;
+}
+
+.icon {
+  display: inline;
+  display: inline-block;
+}
+
+.add-svg-text {
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  top: 19px;
+}
+
+.save-button {
+  font-size: 43px;
+  height: 70px;
+  background-color: #FFDF28;
+  border-radius: 12px;
+  border: 4px solid #0A0A0A;
+  padding: 0px 50px;
+  color: #0A0A0A;
+  box-shadow: 5px 6px 6px -3px rgba(0,0,0,0.48);
+}
+
+.save-button:hover:not(:disabled) {
+  top: -2px;
+  cursor: pointer;
+}
+
+.save-button:active {
+  margin-top: 5px;
+  box-shadow: 6px 3px 6px -3px rgba(0,0,0,0.48);
+}
+
+.save-button.no-unsaved-changes {
+  opacity: 0.5;
+  background-color: #00CA84;
+}
+
+.save-button:disabled {
+  opacity: 0.5;
+}
+
+.update-id-button {
+  background-color: transparent;
+  border: 0;
+  width: 100%;
+  font-size: 1em;
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 13px;
+  text-align: left;
+  color: #666;
+  padding: 0;
+}
+
+.update-id-button:hover {
+  cursor: pointer;
+}
+
+.update-id-input {
+  width: 100%;
+  font-size: 1em;
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 10px -1px 0;
+  text-align: left;
+  color: #666;
+  padding: 2px 0;
+  text-transform: lowercase;
+  border: 1px solid #666;
+}
+
+.delete-button {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  background-color: #ff3300;
+  color: white;
+  border-radius: 50%;
+  height: 35px;
+  font-size: 30px;
+  width: 35px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 2px 9px -6px #000000;
+}
+
+.delete-button:hover {
+  top: -22px;
+  cursor: pointer;
+}
+
+.delete-button::before {
+  content: '×';
+  position: absolute;
+  top: -3px;
+  left: 7px;
+}
+
+.delete-button:active {
+  top: -18px;
+}
+
+label {
+  cursor: pointer;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.loader-container {
+  height: 3px;
+  background-color: white;
+}
+
+.copy-to-clipboard-button {
+  background-color: orange;
+  border: 1px solid #ccc;
+  border-radius: 11px;
+  font-size: 24px;
+  top: 5px;
+  box-shadow: 3px 3px 8px -5px rgba(0,0,0,0.75);
+}
+
+.copy-to-clipboard-button:hover {
+  top: 3px;
+  cursor: pointer;
+}
+
+.copy-to-clipboard-button:active {
+  top: 7px;
+  box-shadow: 3px 1px 8px -5px rgba(0,0,0,0.75);
+}
