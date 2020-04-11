@@ -33,5 +33,5 @@ https://{S3_BUCKET_NAME}.s3-{AWS_DEFAULT_REGION}.amazonaws.com/compiled-svg-shee
 Sometypes ttypescript won't run because of a permissions thing. To fix it, `cd` into the project folder and grant the following permissions in the project.
 ```
 $ cd /path/to/aws-s3-svg-cms
-$ chmod -R u+x ./node_modules
+$ chmod -R u+x ./node_modules/ttypescript
 ```
