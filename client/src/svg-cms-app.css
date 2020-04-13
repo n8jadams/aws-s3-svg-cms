@@ -38,6 +38,7 @@ footer {
   margin-left: 15px;
   width: calc(100% - 245px);
   font-size: 15px;
+  border: 1px solid #D2D2D2;
 }
 
 header p {
@@ -159,6 +160,7 @@ main li {
   overflow: hidden;
   text-overflow: ellipsis;
   margin-top: 13px;
+  margin-bottom: 5px;
   text-align: left;
   color: #666;
   padding: 0;
@@ -180,7 +182,7 @@ main li {
   color: #666;
   padding: 2px 0;
   text-transform: lowercase;
-  border: 1px solid #666;
+  border: 1px solid #D2D2D2;
 }
 
 .delete-button {

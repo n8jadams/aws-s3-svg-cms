@@ -246,6 +246,9 @@ export function SvgCmsApp(): React.ReactElement {
 												className="update-id-input"
 												defaultValue={svg.id}
 												autoFocus
+												onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
+													e.target.select()
+												}}
 												onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
 													// Prevent unallowed keys.
 													const forbiddenKeys = [
