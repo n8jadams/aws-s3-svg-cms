@@ -8,7 +8,7 @@
   "author": "Nate Adams",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "npm run build:client && npm run build:server",
+    "build": "npm run build:server && npm run build:client",
     "build:client": "webpack --production",
     "build:server": "npm run copy-env && ttsc --project server/tsconfig.json",
     "copy-env": "cpy '../.env' ../dist/server/ --cwd=server/ --parents",

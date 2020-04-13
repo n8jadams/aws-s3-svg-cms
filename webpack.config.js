@@ -1,3 +1,5 @@
+require('dotenv/config')
+const webpack = require('webpack')
 const path = require('path')
 const PurgecssPlugin = require('purgecss-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
@@ -53,6 +55,12 @@ module.exports = (_, argv) => {
 								removeComments: true
 							}
 						: false
+				}),
+				// The presence of these env variables are checked at runtime when starting up the server
+				new webpack.DefinePlugin({
+					__AWS_DEFAULT_REGION__: JSON.stringify(process.env.AWS_DEFAULT_REGION),
+					__S3_BUCKET_NAME__: JSON.stringify(process.env.S3_BUCKET_NAME),
+					__SPRITE_SHEET_FILENAME_WITHOUT_EXT__: JSON.stringify(process.env.SPRITE_SHEET_FILENAME_WITHOUT_EXT)
 				})
 			],
 			watch: !isProd

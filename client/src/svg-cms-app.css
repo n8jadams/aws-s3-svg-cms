@@ -22,13 +22,31 @@ header {
   background-color: #fff;
 }
 
+footer {
+  background: white;
+  border-top: 1px solid #eee;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 5px 3em;
+}
+
+.preview-input {
+  margin-left: 15px;
+  width: calc(100% - 245px);
+  font-size: 15px;
+}
+
 header p {
   margin: 2em 0 0 0;
 }
 
 main {
   border-top: 1px solid #eee;
-  padding: 2em 3em 0 3em;
+  padding: 2em 3em 50px 3em;
 }
 
 main ul {

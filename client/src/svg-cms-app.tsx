@@ -6,6 +6,7 @@ import cx from 'classnames'
 import { deriveFileExtension } from './utils/derive-file-extension'
 import { validateXML } from './utils/validate-xml'
 import { copyToClipboard } from './utils/copy-to-clipboard'
+import { COMPILED_SPRITE_SHEET_URL } from './consts/env'
 
 import { fetchSourceSvgs, save } from './requests'
 
@@ -303,6 +304,19 @@ export function SvgCmsApp(): React.ReactElement {
 					)}
 			</main>
 			<input {...getInputProps()} />
+			<footer>
+				<label htmlFor="compiled-sprite-sheet-url">Sprite Sheet Url:</label>
+				<input
+					type="text"
+					id="compiled-sprite-sheet-url"
+					className="preview-input"
+					onChange={(e: React.ChangeEvent<HTMLInputElement>) => { e.preventDefault() }}
+					value={COMPILED_SPRITE_SHEET_URL}
+					onClick={(e: React.MouseEvent<HTMLInputElement>) => {
+						e.target.select()
+					}}
+				/>
+			</footer>
 		</>
 	)
 }
