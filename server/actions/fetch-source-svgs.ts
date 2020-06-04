@@ -16,7 +16,6 @@ export async function fetchSourceSvgs(includeBody:boolean = false): Promise<Svg[
 			.listObjectsV2({ Delimiter: '/', Prefix: SOURCE_SVGS_FOLDER })
 			.promise()
 			.then((data) => {
-				debugger
 				return data.Contents.filter(
 					({ Key }: S3BucketType) =>
 						Key !== SOURCE_SVGS_FOLDER && deriveFileExtension(Key) === 'svg'
@@ -29,6 +28,7 @@ export async function fetchSourceSvgs(includeBody:boolean = false): Promise<Svg[
 					`${S3_BUCKET_BASE_URL}${c.Key}`
 				)
 				const svgWithPotentialDimensions = await fetchResult.text()
+				debugger
 				const svgWithoutDimensions = filterSvgTopLevelDimensions(svgWithPotentialDimensions)
 				const svgAsBase64 = Buffer.from(svgWithoutDimensions).toString('base64')
 
