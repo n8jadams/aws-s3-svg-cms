@@ -14,7 +14,7 @@
     "copy-env": "cpy '../.env' ../dist/server/ --cwd=server/ --parents",
     "dev": "concurrently -p \"[{name}]\" -n \"server,client\" -c \"bgGreen.bold,bgCyan.bold\" \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "webpack --watch",
-    "dev:server": "npm run copy-env && tsc-watch --noClear --compiler ttypescript/bin/tsc -p server/tsconfig.json --outDir dist/server --onCompilationComplete \"node .dev/alias.js\" --onSuccess \"npm run start\" || exit 0",
+    "dev:server": "npm run copy-env && tsc-watch --noClear --compiler ttypescript/bin/tsc -p server/tsconfig.json --outDir dist/server --onCompilationComplete \"node .dev/alias.js\" --onSuccess \"node --inspect dist/server/server.js\" || exit 0",
     "preinstall": "npx npm-force-resolutions",
     "start": "node dist/server/server.js"
   },
