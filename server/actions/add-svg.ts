@@ -8,7 +8,7 @@ export async function addSvg({id, body}: AddSvgPayload): Promise<void> {
 	const newKey = `${SOURCE_SVGS_FOLDER}${id}.svg`
 
 	// Remove top level dimention attributes and convert string to Buffer
-	const Body = Buffer.from(filterSvgTopLevelDimensions(body), 'utf8')
+	const Body = Buffer.from(filterSvgTopLevelDimensions(body), 'utf-8')
 
 	try {
 		await new S3.ManagedUpload({

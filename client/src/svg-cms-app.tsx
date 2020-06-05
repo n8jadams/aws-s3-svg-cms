@@ -235,7 +235,9 @@ export function SvgCmsApp(): React.ReactElement {
 												dispatch({ type: ACTIONS.DELETE, data: { uuid: svg.uuid } })
 											}
 										}}
-									/>
+									>
+										<div className="delete-button-inner" />
+									</button>
 									<div className="icon-box">
 										<img src={svg.url} />
 									</div>

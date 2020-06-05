@@ -15,12 +15,12 @@ export async function fetchSourceSvgs(includeBody:boolean = false): Promise<Svg[
 		const dataContents = await extendedGlobal.s3
 			.listObjectsV2({ Delimiter: '/', Prefix: SOURCE_SVGS_FOLDER })
 			.promise()
-			.then((data) =>
-				data.Contents.filter(
+			.then((data) => {
+				return data.Contents.filter(
 					({ Key }: S3BucketType) =>
 						Key !== SOURCE_SVGS_FOLDER && deriveFileExtension(Key) === 'svg'
 				).sort((a: S3BucketType, b: S3BucketType) => a.Key < b.Key ? -1 : 1)
-			)
+			})
 		return await Promise.all(
 			dataContents.map(async (c: S3BucketType) => {
 				const id = c.Key.replace(SOURCE_SVGS_FOLDER, '').replace('.svg', '').toLowerCase()
