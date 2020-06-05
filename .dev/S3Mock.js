@@ -1,14 +1,11 @@
 // Reverse engineered S3 functions for dev enviornment
 const fs = require('fs')
 const path = require('path')
-const { promisify } = require('util')
 
 const SOURCE_SVGS_PATH = path.resolve(__dirname, 'source-svgs')
 
 module.exports = class S3Mock {
-  constructor({ apiVersion, params: { Bucket } }) {}
-
-  listObjectsV2({ Delimiter, Prefix }) {
+  listObjectsV2() {
     return {
       promise: () =>
         new Promise((resolve) => {
@@ -25,15 +22,12 @@ module.exports = class S3Mock {
         }),
     }
   }
-
   ManagedUpload({ params: { Bucket, Key, Body, ContentType, ACL } }) {
     return { promise: () => Promise.resolve() }
   }
-
   copyObject({ Bucket, CopySource, Key, ACL }) {
     return { promise: () => Promise.resolve() }
   }
-
   deleteObject({ Bucket, Key }) {
     return { promise: () => Promise.resolve() }
   }

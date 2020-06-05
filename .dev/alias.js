@@ -2,22 +2,28 @@
 // https://github.com/microsoft/TypeScript/issues/10866#issuecomment-246789510
 // So I have to do this myself manually
 
+const fs = require('fs').promises
 const path = require('path')
-const replace = require('replace-in-file')
+const glob = require('glob')
 
-const SERVER_JS_FILES_GLOB = `${path.resolve(__dirname, '../dist/server')}/**/*.js`
+const serverJsFiles = glob.sync(`${path.resolve(__dirname, '../dist/server')}/**/*.js`)
 
-Promise.all([
-	// Replace "aws-sdk/clients/s3"
-	replace({
-		files: SERVER_JS_FILES_GLOB,
-		from: /require\(\"aws-sdk\/clients\/s3\"\)/g,
-		to: `require("${path.resolve(__dirname, 'S3Mock')}")`,
-	}),
-	// Replace isomorphic-unfetch.
-	replace({
-		files: SERVER_JS_FILES_GLOB,
-		from: /require\(\"isomorphic-unfetch\"\)/g,
-		to: `require("${path.resolve(__dirname, 'fetchMock')}")`,
-	})
-])
+for(const file of serverJsFiles) {
+	fs.readFile(file, 'utf-8')
+		.then((fileString) => {
+			let changed = false
+			// Replace "aws-sdk/clients/s3"
+			if(fileString.includes('require("aws-sdk/clients/s3")')) {
+				fileString = fileString.replace(/require\(\"aws-sdk\/clients\/s3\"\)/g, `require("${path.resolve(__dirname, 'S3Mock')}")`)
+				changed = true
+			}
+			// Replace "isomorphic-unfetch"
+			if(fileString.includes('require("isomorphic-unfetch")')) {
+				fileString = fileString.replace(/require\(\"isomorphic-unfetch\"\)/g, `require("${path.resolve(__dirname, 'fetchMock')}")`)
+				changed = true
+			}
+			if(changed) {
+				fs.writeFile(file, fileString, 'utf-8')
+			}
+		})
+}

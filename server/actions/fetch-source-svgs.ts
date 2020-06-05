@@ -28,7 +28,6 @@ export async function fetchSourceSvgs(includeBody:boolean = false): Promise<Svg[
 					`${S3_BUCKET_BASE_URL}${c.Key}`
 				)
 				const svgWithPotentialDimensions = await fetchResult.text()
-				debugger
 				const svgWithoutDimensions = filterSvgTopLevelDimensions(svgWithPotentialDimensions)
 				const svgAsBase64 = Buffer.from(svgWithoutDimensions).toString('base64')
 
