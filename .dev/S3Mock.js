@@ -2,33 +2,64 @@
 const fs = require('fs')
 const path = require('path')
 
-const SOURCE_SVGS_PATH = path.resolve(__dirname, 'source-svgs')
+class S3Mock {
 
-module.exports = class S3Mock {
   listObjectsV2() {
     return {
       promise: () =>
         new Promise((resolve) => {
           const svgFilenames = fs
-            .readdirSync(SOURCE_SVGS_PATH)
-						.reduce((acc, filename) => {
-							if(filename.split('.').pop().toLowerCase() !== 'svg') {
-								return acc
-							}
-							acc.push({ Key: filename })
-							return acc
-						}, [])
-					resolve({ Contents: svgFilenames })
+            .readdirSync(path.resolve(__dirname, 'source-svgs'))
+            .reduce((acc, filename) => {
+              if (filename.split('.').pop().toLowerCase() !== 'svg') {
+                return acc
+              }
+              acc.push({ Key: filename })
+              return acc
+            }, [])
+          resolve({ Contents: svgFilenames })
         }),
     }
   }
-  ManagedUpload({ params: { Bucket, Key, Body, ContentType, ACL } }) {
-    return { promise: () => Promise.resolve() }
-  }
+
   copyObject({ Bucket, CopySource, Key, ACL }) {
-    return { promise: () => Promise.resolve() }
+    return {
+      promise: () => {
+        return new Promise((resolve) => {
+					const originalFilename = CopySource.split('/').filter((_, i) => i > 0).join('/')
+					const originalPath = path.resolve(__dirname, originalFilename)
+					const renamedPath = path.resolve(__dirname, Key)
+					fs.copyFileSync(originalPath, renamedPath)
+          resolve()
+        })
+			}
+    }
   }
-  deleteObject({ Bucket, Key }) {
-    return { promise: () => Promise.resolve() }
+
+  deleteObject({ Key }) {
+		return {
+			promise: () => {
+				return new Promise((resolve) => {
+					const svgToDeletePath = path.resolve(__dirname, Key)
+					fs.unlinkSync(svgToDeletePath)
+					resolve()
+				})
+			}
+		}
+	}
+	
+}
+
+S3Mock.ManagedUpload = function ({ params: { Key, Body } }) {
+  return {
+    promise: () =>
+      new Promise((resolve) => {
+        const bodyAsString = Buffer.from(Body).toString()
+        const newSvgPath = path.resolve(__dirname, Key)
+        fs.writeFileSync(newSvgPath, bodyAsString, 'utf-8')
+        resolve()
+      }),
   }
 }
+
+module.exports = S3Mock
