@@ -75,9 +75,9 @@ main li {
   width: 144px;
   height: 144px;
   border: 1px solid #ccc;
-  display: table-cell;
   vertical-align: middle;
   text-align: center;
+  overflow: hidden;
 }
 
 .icon-box {
@@ -89,6 +89,11 @@ main li {
 
 .icon-box img {
   width: 145px;
+}
+
+.icon-box img.taller-than-wide {
+  height: 100%;
+  width: auto;
 }
 
 .icon-box-new {

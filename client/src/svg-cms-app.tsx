@@ -266,7 +266,7 @@ export function SvgCmsApp(): React.ReactElement {
 													}
 													// Blur if the user hits enter
 													if (e.key === 'Enter') {
-														e.target.blur()
+														e.currentTarget.blur()
 													}
 												}}
 												onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -318,7 +318,7 @@ export function SvgCmsApp(): React.ReactElement {
 					onChange={(e: React.ChangeEvent<HTMLInputElement>) => { e.preventDefault() }}
 					value={COMPILED_SPRITE_SHEET_URL}
 					onClick={(e: React.MouseEvent<HTMLInputElement>) => {
-						e.target.select()
+						e.currentTarget.select()
 					}}
 				/>
 			</footer>

@@ -1,7 +1,7 @@
 /// <reference path="../types/types.d.ts" />
 
 import 'dotenv/config'
-import fastify from 'fastify'
+import fastify, { FastifyInstance } from 'fastify'
 import { v4 as uuidv4 } from 'uuid'
 import { IncomingMessage, Server, ServerResponse } from 'http'
 import path from 'path'
@@ -17,7 +17,7 @@ import './aws-service'
 
 validateEnv()
 
-const server: fastify.FastifyInstance<
+const server: FastifyInstance<
 	Server,
 	IncomingMessage,
 	ServerResponse
@@ -49,7 +49,7 @@ async function bootstrap(): Promise<void> {
 		server.register(routes)
 
 		await server.listen(
-			{ port: Number(process.env.LOCALHOST_PORT), },
+			Number(process.env.LOCALHOST_PORT),
 			(err: Error) => {
 				if (err) {
 					console.error({ msg: 'error starting server', err })

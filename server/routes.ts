@@ -1,6 +1,4 @@
-import * as fastify from 'fastify'
-import { FastifyReply } from 'fastify'
-import { ServerResponse } from 'http'
+import { FastifyInstance } from 'fastify'
 import { is } from 'typescript-is'
 
 import { fetchSourceSvgs } from './actions/fetch-source-svgs'
@@ -13,12 +11,12 @@ import { validateId } from './utils/validate-id'
 import { validateSvg } from './utils/validate-svg'
 
 export async function routes(
-  fastifyInstance: fastify.FastifyInstance
+  fastifyInstance: FastifyInstance
 ): Promise<void> {
   fastifyInstance.route({
     method: 'GET',
     url: '/',
-    handler: async (_, reply: FastifyReply<ServerResponse>) => {
+    handler: async (_, reply) => {
       reply.view('index.html')
       return reply
     }
@@ -35,10 +33,7 @@ export async function routes(
   fastifyInstance.route({
     method: 'POST',
     url: '/api/save',
-    handler: async (
-      request: { body: SavingPayload },
-      reply: FastifyReply<ServerResponse>
-    ): Promise<void> => {
+    handler: async (request, reply): Promise<void> => {
       const payload = request.body
 
       // Validate payload format
