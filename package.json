@@ -22,7 +22,7 @@
     "babel-core": "7.0.0-bridge.0",
     "elliptic": ">=6.5.3",
     "lodash": "^4.17.19",
-    "minimist": "^1.2.3",
+    "minimist": "1.2.6",
     "node-fetch": "^2.6.1",
     "yargs-parser": "13.1.2"
   },
