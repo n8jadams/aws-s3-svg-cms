@@ -57,7 +57,7 @@ window.addEventListener('load', () => {
 	fetch(svgUrl)
 		.then((res) => {
 			if (!res.ok) {
-				throw new Error(response.statusText)
+				throw new Error(res.statusText)
 			}
 			return res.text()
 		})
